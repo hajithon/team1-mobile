@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:hajithon_teami_flutter_app/component/common/column_form_field_widget.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_elevated_button.dart';
+import 'package:hajithon_teami_flutter_app/component/common/custom_text_form_field.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.dart';
 import 'package:hajithon_teami_flutter_app/pages/common/default_layout.dart';
+import 'package:hajithon_teami_flutter_app/pages/home/home_screen.dart';
+import 'package:hajithon_teami_flutter_app/services/auth/service.dart';
 
 class RegisterScreen extends StatelessWidget {
   static const String routeName = '/register';
 
-  const RegisterScreen({super.key});
+  final Rx<String> email = Rx('');
+  final Rx<String> password = Rx('');
+  final Rx<String> passwordDoubleCheck = Rx('');
+  final Rx<bool> isLoading = false.obs;
+
+  RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      child: CustomScrollView(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        slivers: [
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: ListView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              shrinkWrap: true,
               children: [
                 const Text(
                   '더 좋은 아침을 만날 준비 됐나요?',
@@ -32,34 +39,62 @@ class RegisterScreen extends StatelessWidget {
                   style: TextStyles.subTitleTextStyle,
                 ),
                 const SizedBox(height: 20.0),
-                const Expanded(
-                  child: const Column(
+                Expanded(
+                  child: Column(
                     children: [
-                      ColumnFormFieldWidget(
+                      CustomTextFormField(
                         label: '이메일',
                         hintText: 'example@email.com',
+                        onChanged: (value) {
+                          email.value = value;
+                        },
                       ),
-                      SizedBox(height: 24.0),
-                      ColumnFormFieldWidget(
+                      const SizedBox(height: 24.0),
+                      CustomTextFormField(
                         label: '비밀번호',
                         hintText: '숫자 포함 영문 10글자 이상',
                         obscureText: true,
+                        onChanged: (value) {
+                          password.value = value;
+                        },
                       ),
-                      SizedBox(height: 24.0),
-                      ColumnFormFieldWidget(
+                      const SizedBox(height: 24.0),
+                      CustomTextFormField(
                         label: '비밀번호 확인',
                         hintText: '비밀번호를 한 번 더 입력해주세요',
                         obscureText: true,
+                        onChanged: (value) {
+                          passwordDoubleCheck.value = value;
+                        },
                       ),
                     ],
                   ),
                 ),
-                CustomElevatedButton(
-                  text: '완료',
-                  onPressed: () => Get.back(),
-                ),
               ],
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Obx(() {
+              if (isLoading.value) {
+                return CustomButton.loading();
+              }
+              if (email.value.isNotEmpty && password.value.isNotEmpty && password.value == passwordDoubleCheck.value) {
+                return CustomButton(
+                  child: const Text('완료'),
+                  onTap: () async {
+                    try {
+                      isLoading.value = true;
+                      await Get.find<AuthService>().register(email.value, password.value);
+                      Get.offAllNamed(HomeScreen.routeName);
+                    } finally {
+                      isLoading.value = false;
+                    }
+                  },
+                );
+              }
+              return CustomButton.disabled(child: const Text('완료'));
+            }),
           ),
         ],
       ),
