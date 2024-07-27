@@ -5,6 +5,8 @@ import 'package:hajithon_teami_flutter_app/pages/login/landing_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/login/login_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/login/register_screen.dart';
 import 'package:hajithon_teami_flutter_app/services/auth/service.dart';
+import 'package:hajithon_teami_flutter_app/services/group/model.dart';
+import 'package:hajithon_teami_flutter_app/services/group/service.dart';
 import 'package:hajithon_teami_flutter_app/services/profile/service.dart';
 
 class TestScreen extends StatelessWidget {
@@ -65,6 +67,13 @@ class TestScreen extends StatelessWidget {
             Get.find<ProfileService>().fetchProfile();
           },
           child: const Text('getprofile'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.put(GroupService());
+            Get.find<GroupService>().createGroup('test group', const Time(hour: 7, minute: 0));
+          },
+          child: const Text('create group'),
         ),
         TextButton(
           onPressed: () {
