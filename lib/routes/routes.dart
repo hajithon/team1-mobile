@@ -9,6 +9,7 @@ import 'package:hajithon_teami_flutter_app/pages/login/login_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/login/register_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/onboarding/pages/binding.dart';
 import 'package:hajithon_teami_flutter_app/pages/onboarding/pages/profile.dart';
+import 'package:hajithon_teami_flutter_app/pages/quiz/news_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/test/page.dart';
 
 class AppPages {
@@ -51,6 +52,10 @@ class AppPages {
       page: () => ProfileOnoboardingScreen(),
       middlewares: [LoginMiddleware()],
       binding: OnboardingPageBinding(),
+    ),
+    GetPage(
+      name: NewsScreen.routeName,
+      page: () => const NewsScreen(),
     ),
   ];
 }

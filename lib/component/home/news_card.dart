@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_elevated_button.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.dart';
 import 'package:hajithon_teami_flutter_app/const/color/color.dart';
+import 'package:hajithon_teami_flutter_app/pages/quiz/news_screen.dart';
 
 class NewsCard extends StatelessWidget {
   final String title;
@@ -48,7 +50,9 @@ class NewsCard extends StatelessWidget {
           const SizedBox(height: 20.0),
           CustomElevatedButton(
             text: '오늘의 뉴스/퀴즈 풀러가기',
-            onPressed: () {},
+            onPressed: () => Get.toNamed(
+              NewsScreen.routeName,
+            ),
             fontSize: 16.0,
           ),
         ],
