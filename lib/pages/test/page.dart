@@ -91,6 +91,13 @@ class TestScreen extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
+            Get.put(GroupService());
+            Get.find<GroupService>().deleteGroup(6);
+          },
+          child: const Text('delete group'),
+        ),
+        TextButton(
+          onPressed: () {
             Get.find<AuthService>().logout();
           },
           child: const Text('logout'),

@@ -36,4 +36,10 @@ class GroupRepository {
 
     return (response.data as List).map((e) => Group.fromJson(e)).toList();
   }
+
+  Future<void> deleteGroup(int id) async {
+    String url = '/group/$id/';
+
+    await api.dio.delete(url);
+  }
 }
