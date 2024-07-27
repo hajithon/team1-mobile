@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:get/get.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.dart';
 import 'package:hajithon_teami_flutter_app/component/home/news_card.dart';
 import 'package:hajithon_teami_flutter_app/component/home/weekly_strict_card.dart';
@@ -6,6 +8,7 @@ import 'package:hajithon_teami_flutter_app/component/todolist/todolist_listview.
 import 'package:hajithon_teami_flutter_app/component/user/profile_state_listview.dart';
 import 'package:hajithon_teami_flutter_app/const/color/color.dart';
 import 'package:hajithon_teami_flutter_app/pages/common/default_layout.dart';
+import 'package:hajithon_teami_flutter_app/pages/group/group_create/group_create_name_screen.dart';
 import 'package:hajithon_teami_flutter_app/view_model/strict/strict_model.dart';
 import 'package:hajithon_teami_flutter_app/view_model/todo/todo_model.dart';
 import 'package:hajithon_teami_flutter_app/view_model/user/user_model.dart';
@@ -31,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
+      floatingActionButton: const _GroupFloatingActionButton(),
       child: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Column(
@@ -81,6 +85,52 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _GroupFloatingActionButton extends StatelessWidget {
+  const _GroupFloatingActionButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return SpeedDial(
+      backgroundColor: primaryColor,
+      foregroundColor: Colors.white,
+      activeIcon: Icons.close,
+      icon: Icons.group_add_outlined,
+      childMargin: const EdgeInsets.all(16.0),
+      children: [
+        // 1. 초대하기
+        SpeedDialChild(
+          child: Transform.rotate(
+            angle: -0.7853,
+            child: const Icon(Icons.send_outlined),
+          ),
+          shape: const CircleBorder(),
+          backgroundColor: inputBackgroundColor,
+          label: '초대하기',
+          labelStyle: TextStyles.subTitleTextStyle.copyWith(
+            fontSize: 16.0,
+            color: titleTextColor,
+          ),
+          onTap: () {},
+        ),
+        // 2. 그룹 생성
+        SpeedDialChild(
+          child: const Icon(Icons.group_add_outlined),
+          shape: const CircleBorder(),
+          backgroundColor: inputBackgroundColor,
+          label: '그룹생성',
+          labelStyle: TextStyles.subTitleTextStyle.copyWith(
+            fontSize: 16.0,
+            color: titleTextColor,
+          ),
+          onTap: () => Get.toNamed(
+            GroupCreateNameScreen.routeName,
+          ),
+        ),
+      ],
     );
   }
 }
