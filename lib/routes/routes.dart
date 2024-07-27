@@ -26,7 +26,7 @@ class AppPages {
     ),
     GetPage(
       name: RegisterScreen.routeName,
-      page: () => const RegisterScreen(),
+      page: () => RegisterScreen(),
     ),
     GetPage(
       name: HomeScreen.routeName,
@@ -45,6 +45,6 @@ class AppPages {
       name: GroupCreateCompleteScreen.routeName,
       page: () => const GroupCreateCompleteScreen(),
     ),
-        GetPage(name: ProfileOnoboardingScreen.routeName, page: () => const ProfileOnoboardingScreen(), middlewares: [LoginMiddleware()]),
+    GetPage(name: ProfileOnoboardingScreen.routeName, page: () => const ProfileOnoboardingScreen(), middlewares: [LoginMiddleware()]),
   ];
 }
