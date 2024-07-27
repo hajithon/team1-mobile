@@ -4,6 +4,7 @@ import 'package:hajithon_teami_flutter_app/pages/home/home_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/login/landing_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/login/login_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/login/register_screen.dart';
+import 'package:hajithon_teami_flutter_app/pages/onboarding/pages/profile.dart';
 import 'package:hajithon_teami_flutter_app/services/auth/service.dart';
 import 'package:hajithon_teami_flutter_app/services/group/model.dart';
 import 'package:hajithon_teami_flutter_app/services/group/service.dart';
@@ -44,6 +45,7 @@ class TestScreen extends StatelessWidget {
         linkToRoute(LandingScreen.routeName),
         linkToRoute(LoginScreen.routeName),
         linkToRoute(RegisterScreen.routeName),
+        linkToRoute(ProfileOnoboardingScreen.routeName),
         TextButton(
             onPressed: () {
               Get.find<AuthService>().register('test2@test.com', 'test1234');
@@ -124,6 +126,34 @@ class TestScreen extends StatelessWidget {
             Get.find<GroupService>().inviteMember(7, 'dbswjd5588@gmail.com');
           },
           child: const Text('invite member to group'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.put(TodoService());
+            Get.find<TodoService>().createTodo('haha');
+          },
+          child: const Text('create todo'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.put(TodoService());
+            Get.find<TodoService>().fetchTodos();
+          },
+          child: const Text('get todos'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.put(TodoService());
+            Get.find<TodoService>().editTodo(10, done: true);
+          },
+          child: const Text('patch todo'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.put(TodoService());
+            Get.find<TodoService>().deleteTodo(8);
+          },
+          child: const Text('delete todo'),
         ),
         TextButton(
           onPressed: () {
