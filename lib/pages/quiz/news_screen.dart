@@ -103,7 +103,6 @@ final List<News> _newsList = [
     url: 'https://deku.posstree.com/en/flutter/url_launcher/',
     summary: '요약',
     publishedAt: DateTime(2024, 7, 24),
-    keyword: 'keyword',
   ),
   News(
     id: 0,
@@ -111,7 +110,6 @@ final List<News> _newsList = [
     url: 'https://deku.posstree.com/en/flutter/url_launcher/',
     summary: '요약',
     publishedAt: DateTime(2024, 7, 24),
-    keyword: 'keyword',
   ),
   News(
     id: 0,
@@ -119,7 +117,6 @@ final List<News> _newsList = [
     url: 'https://deku.posstree.com/en/flutter/url_launcher/',
     summary: '요약',
     publishedAt: DateTime(2024, 7, 24),
-    keyword: 'keyword',
   ),
   News(
     id: 0,
@@ -127,7 +124,6 @@ final List<News> _newsList = [
     url: 'https://deku.posstree.com/en/flutter/url_launcher/',
     summary: '요약',
     publishedAt: DateTime(2024, 7, 24),
-    keyword: 'keyword',
   ),
   News(
     id: 0,
@@ -135,7 +131,6 @@ final List<News> _newsList = [
     url: 'https://deku.posstree.com/en/flutter/url_launcher/',
     summary: '요약',
     publishedAt: DateTime(2024, 7, 24),
-    keyword: 'keyword',
   ),
   News(
     id: 0,
@@ -143,6 +138,5 @@ final List<News> _newsList = [
     url: 'https://deku.posstree.com/en/flutter/url_launcher/',
     summary: '요약',
     publishedAt: DateTime(2024, 7, 24),
-    keyword: 'keyword',
   ),
 ];
