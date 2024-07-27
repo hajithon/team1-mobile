@@ -36,7 +36,8 @@ class DefaultLayout extends StatelessWidget {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
-        backgroundColor: backgroundColor ?? Colors.white,
+        resizeToAvoidBottomInset: false,
+      backgroundColor: backgroundColor ?? Colors.white,
         appBar: _renderDefaultAppBar(title: title),
         body: safeAreaDisabled ? paddedBody : SafeArea(child: paddedBody),
         bottomNavigationBar: bottomNavigationBar,
@@ -50,6 +51,7 @@ AppBar _renderDefaultAppBar({
   String? title,
 }) {
   return AppBar(
+    surfaceTintColor: Colors.transparent,
     centerTitle: false,
     backgroundColor: Colors.white,
     elevation: 0,
