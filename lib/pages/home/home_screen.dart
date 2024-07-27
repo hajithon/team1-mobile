@@ -3,6 +3,7 @@ import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.da
 import 'package:hajithon_teami_flutter_app/component/home/news_card.dart';
 import 'package:hajithon_teami_flutter_app/component/home/weekly_strict_card.dart';
 import 'package:hajithon_teami_flutter_app/component/todolist/todolist_listview.dart';
+import 'package:hajithon_teami_flutter_app/const/color/color.dart';
 import 'package:hajithon_teami_flutter_app/pages/common/default_layout.dart';
 import 'package:hajithon_teami_flutter_app/view_model/strict/strict_model.dart';
 import 'package:hajithon_teami_flutter_app/view_model/todo/todo_model.dart';
@@ -29,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return DefaultLayout(
       child: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -63,12 +65,64 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: 24.0),
                   TodolistListview(todos: _todoData),
+                  const _AddTodoFormField(),
                 ],
               ),
             )
           ],
         ),
       ),
+    );
+  }
+}
+
+class _AddTodoFormField extends StatefulWidget {
+  const _AddTodoFormField();
+
+  @override
+  State<_AddTodoFormField> createState() => _AddTodoFormFieldState();
+}
+
+class _AddTodoFormFieldState extends State<_AddTodoFormField> {
+  String newTodo = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(
+          height: 20.0,
+          child: GestureDetector(
+            onTap: () {
+              /// TODO: todolist 추가 로직 작성
+            },
+            child: const Icon(
+              Icons.add,
+              color: titleTextColor,
+            ),
+          ),
+        ),
+        const SizedBox(width: 16.0),
+        Expanded(
+          child: TextField(
+            onChanged: (value) {
+              setState(() {
+                newTodo = value;
+              });
+            },
+            decoration: InputDecoration(
+              hintText: '오늘의 할 일 추가하기',
+              border: InputBorder.none,
+              hintStyle: TextStyles.subTitleTextStyle.copyWith(
+                fontSize: 16.0,
+                color: titleTextColor.withOpacity(0.5),
+              ),
+              isDense: true,
+              contentPadding: EdgeInsets.zero,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

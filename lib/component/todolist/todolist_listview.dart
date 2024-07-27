@@ -14,11 +14,13 @@ class TodolistListview extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Column(children: [
         for (int i = 0; i < todos.length; i++) ...[
-          if (i > 0) const SizedBox(height: 18.0),
           _TodoTile.fromModel(todos[i]),
+          const SizedBox(height: 18.0),
         ],
       ]);
 }
+
+
 
 class _TodoTile extends StatelessWidget {
   final String title;
