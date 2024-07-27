@@ -3,10 +3,12 @@ import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.da
 import 'package:hajithon_teami_flutter_app/component/home/news_card.dart';
 import 'package:hajithon_teami_flutter_app/component/home/weekly_strict_card.dart';
 import 'package:hajithon_teami_flutter_app/component/todolist/todolist_listview.dart';
+import 'package:hajithon_teami_flutter_app/component/user/profile_state_listview.dart';
 import 'package:hajithon_teami_flutter_app/const/color/color.dart';
 import 'package:hajithon_teami_flutter_app/pages/common/default_layout.dart';
 import 'package:hajithon_teami_flutter_app/view_model/strict/strict_model.dart';
 import 'package:hajithon_teami_flutter_app/view_model/todo/todo_model.dart';
+import 'package:hajithon_teami_flutter_app/view_model/user/user_model.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -32,8 +34,15 @@ class _HomeScreenState extends State<HomeScreen> {
       child: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // 프로필 상태 리스트뷰
+            SizedBox(
+              height: 90,
+              child: ProfileStateListview(users: _userList),
+            ),
+
             // 뉴스 및 퀴즈 풀러가기 카드
             const NewsCard(
               title: '좋은 아침이에요!',
@@ -186,5 +195,50 @@ List<StrictModel> _weeklyData = [
   StrictModel(
     date: DateTime(2024, 8, 3),
     wakeUpState: null,
+  ),
+];
+
+List<UserModel> _userList = [
+  const UserModel(
+    uid: '1',
+    profileImageUrl:
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+    name: '김철수',
+    state: WakeUpState.wakeUp,
+  ),
+  const UserModel(
+    uid: '2',
+    profileImageUrl:
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+    name: '김영희',
+    state: WakeUpState.wakeUpLate,
+  ),
+  const UserModel(
+    uid: '3',
+    profileImageUrl:
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+    name: '김철수',
+    state: WakeUpState.quizCompleted,
+  ),
+  const UserModel(
+    uid: '4',
+    profileImageUrl:
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+    name: '김영희',
+    state: WakeUpState.sleeping,
+  ),
+  const UserModel(
+    uid: '5',
+    profileImageUrl:
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+    name: '김철수',
+    state: WakeUpState.sleeping,
+  ),
+  const UserModel(
+    uid: '6',
+    profileImageUrl:
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+    name: '김영희',
+    state: WakeUpState.sleeping,
   ),
 ];
