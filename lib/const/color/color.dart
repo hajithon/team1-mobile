@@ -8,4 +8,4 @@ const inputHintColor = Color(0xFFC0BDBA);
 
 const inputBackgroundColor = Color(0xFFF7F7F7);
 
-const primaryColor = Color(0xFFA5A39F);
+const primaryColor = Color(0xFFFF6C3E);
