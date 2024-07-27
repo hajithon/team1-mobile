@@ -8,6 +8,7 @@ import 'package:hajithon_teami_flutter_app/services/auth/service.dart';
 import 'package:hajithon_teami_flutter_app/services/group/model.dart';
 import 'package:hajithon_teami_flutter_app/services/group/service.dart';
 import 'package:hajithon_teami_flutter_app/services/profile/service.dart';
+import 'package:hajithon_teami_flutter_app/services/todo/service.dart';
 
 class TestScreen extends StatelessWidget {
   static const String routeName = '/test';
@@ -95,6 +96,20 @@ class TestScreen extends StatelessWidget {
             Get.find<GroupService>().deleteGroup(6);
           },
           child: const Text('delete group'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.put(TodoService());
+            Get.find<TodoService>().createTodo('test todo');
+          },
+          child: const Text('create todo'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.put(GroupService());
+            Get.find<GroupService>().setWakeTime(7, const Time(hour: 11));
+          },
+          child: const Text('editi group'),
         ),
         TextButton(
           onPressed: () {

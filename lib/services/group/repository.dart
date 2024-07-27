@@ -37,6 +37,22 @@ class GroupRepository {
     return (response.data as List).map((e) => Group.fromJson(e)).toList();
   }
 
+  Future<Group> patchGroup(int groupId, {String? name, Time? wakeTime}) async {
+    String url = "/group/$groupId/";
+
+    Map<String, dynamic> data = {};
+
+    if (name != null) {
+      data['name'] = name;
+    }
+    if (wakeTime != null) {
+      data['wake_time'] = wakeTime.toString();
+    }
+
+    Response response = await api.dio.patch(url, data: data);
+    return Group.fromJson(response.data);
+  }
+
   Future<void> deleteGroup(int id) async {
     String url = '/group/$id/';
 

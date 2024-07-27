@@ -23,6 +23,28 @@ class GroupService extends GetxController {
     return await repository.getGroup(name);
   }
 
+  Future<Group> setWakeTime(int groupId, Time wakeTime) async {
+    Group updatedGroup = await repository.patchGroup(groupId, wakeTime: wakeTime);
+
+    List<Group> newJoinedGroups = List.from(joinedGroups);
+    newJoinedGroups.removeWhere((group) => group.id == groupId);
+    newJoinedGroups.add(updatedGroup);
+    _joinedGroups.value = newJoinedGroups;
+
+    return updatedGroup;
+  }
+
+  Future<Group> setGroupName(int groupId, String name) async {
+    Group updatedGroup = await repository.patchGroup(groupId, name: name);
+
+    List<Group> newJoinedGroups = List.from(joinedGroups);
+    newJoinedGroups.removeWhere((group) => group.id == groupId);
+    newJoinedGroups.add(updatedGroup);
+    _joinedGroups.value = newJoinedGroups;
+
+    return updatedGroup;
+  }
+
   Future<void> fetchJoinedGrouop() async {
     _joinedGroups.value = await repository.getJoinedGroup();
   }
