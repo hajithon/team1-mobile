@@ -12,7 +12,9 @@ class JWTInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     AuthService authService = Get.find<AuthService>();
 
-    options.headers['Authorization'] ??= 'Bearer ${authService.jwt.token.accessToken}';
+    if (authService.jwt.token.accessToken != null) {
+      options.headers['Authorization'] ??= 'Bearer ${authService.jwt.token.accessToken}';
+    }
 
     return handler.next(options);
   }

@@ -5,6 +5,7 @@ import 'package:hajithon_teami_flutter_app/pages/login/landing_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/login/login_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/login/register_screen.dart';
 import 'package:hajithon_teami_flutter_app/services/auth/service.dart';
+import 'package:hajithon_teami_flutter_app/services/profile/service.dart';
 
 class TestScreen extends StatelessWidget {
   static const String routeName = '/test';
@@ -50,6 +51,12 @@ class TestScreen extends StatelessWidget {
               Get.find<AuthService>().login('test@test.com', 'test1234');
             },
             child: const Text('login')),
+        TextButton(
+            onPressed: () {
+              Get.put(ProfileService());
+              Get.find<ProfileService>().fetchProfile();
+            },
+            child: const Text('getprofile')),
         TextButton(
             onPressed: () {
               Get.find<AuthService>().logout();
