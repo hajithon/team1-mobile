@@ -30,11 +30,9 @@ class DefaultLayout extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         backgroundColor: backgroundColor ?? Colors.white,
         appBar: _renderDefaultAppBar(title: title),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: child,
-          ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: child,
         ),
         bottomNavigationBar: bottomNavigationBar,
         floatingActionButton: floatingActionButton,

@@ -8,6 +8,7 @@ import 'package:hajithon_teami_flutter_app/pages/onboarding/pages/profile.dart';
 import 'package:hajithon_teami_flutter_app/services/auth/service.dart';
 import 'package:hajithon_teami_flutter_app/services/group/model.dart';
 import 'package:hajithon_teami_flutter_app/services/group/service.dart';
+import 'package:hajithon_teami_flutter_app/services/news/service.dart';
 import 'package:hajithon_teami_flutter_app/services/profile/service.dart';
 import 'package:hajithon_teami_flutter_app/services/todo/service.dart';
 
@@ -154,6 +155,13 @@ class TestScreen extends StatelessWidget {
             Get.find<TodoService>().deleteTodo(8);
           },
           child: const Text('delete todo'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.put(NewsService());
+            Get.find<NewsService>().fetchNews();
+          },
+          child: const Text('fetch news'),
         ),
         TextButton(
           onPressed: () {

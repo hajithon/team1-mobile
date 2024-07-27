@@ -5,8 +5,8 @@ import 'package:hajithon_teami_flutter_app/services/news/repository.dart';
 class NewsService extends GetxController {
   final NewsRepository repository;
 
-  final Rx<News?> _news = Rx(null);
-  News? get news => _news.value;
+  final Rx<List<News>> _news = Rx([]);
+  List<News> get news => _news.value;
   NewsService({NewsRepository? repository}) : repository = repository ?? NewsRepository();
 
   Future<void> fetchNews() async {

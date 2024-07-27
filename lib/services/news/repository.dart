@@ -7,10 +7,10 @@ class NewsRepository {
   final ApiProvider api;
   NewsRepository({ApiProvider? api}) : api = api ?? Get.find<ApiProvider>();
 
-  Future<News> getNews() async {
+  Future<List<News>> getNews() async {
     String url = "/news/";
 
     Response response = await api.dio.get(url);
-    return News.fromJson(response.data);
+    return (response.data['data'] as List).map((e) => News.fromJson(e)).toList();
   }
 }
