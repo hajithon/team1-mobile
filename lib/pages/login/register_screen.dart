@@ -28,7 +28,7 @@ class RegisterScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20.0),
           const Expanded(
-            child: Column(
+            child: const Column(
               children: [
                 ColumnFormFieldWidget(
                   label: '이메일',

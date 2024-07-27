@@ -32,7 +32,6 @@ class DefaultLayout extends StatelessWidget {
     );
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: backgroundColor ?? Colors.white,
       appBar: _renderDefaultAppBar(title: title),
       body: safeAreaDisabled ? paddedBody : SafeArea(child: paddedBody),
@@ -46,7 +45,6 @@ AppBar _renderDefaultAppBar({
   String? title,
 }) {
   return AppBar(
-    surfaceTintColor: Colors.transparent,
     centerTitle: false,
     backgroundColor: Colors.white,
     elevation: 0,
