@@ -10,4 +10,8 @@ class GroupService extends GetxController {
     Group newGroup = await repository.createGroup(name, wakeTime);
     return newGroup;
   }
+
+  Future<List<Group>> fetchGroup(String name) async {
+    return await repository.getGroup(name);
+  }
 }

@@ -18,4 +18,15 @@ class GroupRepository {
     Response response = await api.dio.post(url, data: data);
     return Group.fromJson(response.data);
   }
+
+  Future<List<Group>> getGroup(String name) async {
+    String url = "/group/";
+
+    Map<String, dynamic> data = {
+      'name': name,
+    };
+
+    Response response = await api.dio.get(url, data: data);
+    return (response.data as List).map((e) => Group.fromJson(e)).toList();
+  }
 }

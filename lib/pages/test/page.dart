@@ -77,6 +77,13 @@ class TestScreen extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
+            Get.put(GroupService());
+            Get.find<GroupService>().fetchGroup('test group');
+          },
+          child: const Text('get group'),
+        ),
+        TextButton(
+          onPressed: () {
             Get.find<AuthService>().logout();
           },
           child: const Text('logout'),
