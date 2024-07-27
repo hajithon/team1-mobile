@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.dart';
 import 'package:hajithon_teami_flutter_app/const/color/color.dart';
 
-class CustomElevatedBotton extends StatelessWidget {
+/// default font size: 18.0
+/// default text color: white
+/// default background color: primaryColor
+class CustomElevatedButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   final String text;
@@ -13,7 +16,7 @@ class CustomElevatedBotton extends StatelessWidget {
 
   final double? fontSize;
 
-  const CustomElevatedBotton({
+  const CustomElevatedButton({
     super.key,
     this.onPressed,
     required this.text,
@@ -47,7 +50,7 @@ class CustomElevatedBotton extends StatelessWidget {
   }
 }
 
-class CustomWhiteElevatedButton extends CustomElevatedBotton {
+class CustomWhiteElevatedButton extends CustomElevatedButton {
   const CustomWhiteElevatedButton({
     super.key,
     super.onPressed,
