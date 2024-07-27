@@ -49,6 +49,15 @@ class GroupService extends GetxController {
     _joinedGroups.value = await repository.getJoinedGroup();
   }
 
+  Future<void> inviteMember(int groupId, String email) async {
+    Group updatedGroup = await repository.inviteMemeber(groupId, email);
+
+    List<Group> newJoinedGroups = List.from(joinedGroups);
+    newJoinedGroups.removeWhere((group) => group.id == groupId);
+    newJoinedGroups.add(updatedGroup);
+    _joinedGroups.value = newJoinedGroups;
+  }
+
   Future<void> deleteGroup(int id) async {
     await repository.deleteGroup(id);
 

@@ -53,6 +53,17 @@ class GroupRepository {
     return Group.fromJson(response.data);
   }
 
+  Future<Group> inviteMemeber(int groupId, String email) async {
+    String url = "/group/$groupId/";
+
+    Map<String, dynamic> data = {
+      'email': email,
+    };
+
+    Response response = await api.dio.post(url, data: data);
+    return Group.fromJson(response.data);
+  }
+
   Future<void> deleteGroup(int id) async {
     String url = '/group/$id/';
 

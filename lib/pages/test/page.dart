@@ -46,7 +46,7 @@ class TestScreen extends StatelessWidget {
         linkToRoute(RegisterScreen.routeName),
         TextButton(
             onPressed: () {
-              Get.find<AuthService>().register('test@test.com', 'test1234');
+              Get.find<AuthService>().register('test2@test.com', 'test1234');
             },
             child: const Text('register')),
         TextButton(
@@ -117,6 +117,13 @@ class TestScreen extends StatelessWidget {
             Get.find<ProfileService>().searchUserByEmail('test@test.com');
           },
           child: const Text('search user by email'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.put(GroupService());
+            Get.find<GroupService>().inviteMember(7, 'dbswjd5588@gmail.com');
+          },
+          child: const Text('invite member to group'),
         ),
         TextButton(
           onPressed: () {
