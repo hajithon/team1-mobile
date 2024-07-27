@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_elevated_button.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.dart';
 import 'package:hajithon_teami_flutter_app/const/color/color.dart';
+import 'package:hajithon_teami_flutter_app/pages/quiz/news_screen.dart';
 
 class NewsCard extends StatelessWidget {
   final String title;
@@ -17,16 +19,25 @@ class NewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(color: inputBackgroundColor),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: Colors.white,
+      ),
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            title,
-            style: TextStyles.titleTextStyle.copyWith(
-              fontSize: 16.0,
-            ),
+          Row(
+            children: [
+              Image.asset('asset/sun.png'),
+              const SizedBox(width: 4),
+              Text(
+                title,
+                style: TextStyles.titleTextStyle.copyWith(
+                  fontSize: 16.0,
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 12.0),
           Column(
@@ -46,10 +57,14 @@ class NewsCard extends StatelessWidget {
                 .toList(),
           ),
           const SizedBox(height: 20.0),
-          CustomElevatedButton(
-            text: '오늘의 뉴스/퀴즈 풀러가기',
-            onPressed: () {},
-            fontSize: 16.0,
+          CustomButton(
+            child: const Text(
+              '오늘의 뉴스/퀴즈 풀러가기',
+              style: TextStyle(fontSize: 16),
+            ),
+            onTap: () => Get.toNamed(
+              NewsScreen.routeName,
+            ),
           ),
         ],
       ),

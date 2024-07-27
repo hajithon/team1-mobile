@@ -36,6 +36,12 @@ class ProfileRepository {
     return Profile.fromJson(response.data);
   }
 
+  Future<List<Wake>> getWakesByMonth(int month) async {
+    String url = 'user/?month=$month';
+    Response response = await api.dio.get(url);
+    return (response.data as List).map((e) => Wake.fromJson(e)).toList();
+  }
+
   Future<Profile> getUserByEmail(String email) async {
     String url = '/group/user_list/';
 

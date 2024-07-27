@@ -11,6 +11,8 @@ class DefaultLayout extends StatelessWidget {
   final Widget? bottomNavigationBar;
   final Widget? floatingActionButton;
 
+  final bool safeAreaDisabled;
+
   const DefaultLayout({
     super.key,
     required this.child,
@@ -18,23 +20,22 @@ class DefaultLayout extends StatelessWidget {
     this.title,
     this.bottomNavigationBar,
     this.floatingActionButton,
+    this.safeAreaDisabled = false,
   });
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         backgroundColor: backgroundColor ?? Colors.white,
         appBar: _renderDefaultAppBar(title: title),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: child,
-          ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: child,
         ),
         bottomNavigationBar: bottomNavigationBar,
         floatingActionButton: floatingActionButton,

@@ -9,7 +9,6 @@ class News {
   final String summary;
   @JsonKey(name: 'published_at')
   final DateTime publishedAt;
-  final String keyword;
 
   News({
     required this.id,
@@ -17,7 +16,6 @@ class News {
     required this.url,
     required this.summary,
     required this.publishedAt,
-    required this.keyword,
   });
 
   factory News.fromJson(Map<String, dynamic> json) => _$NewsFromJson(json);

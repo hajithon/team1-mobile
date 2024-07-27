@@ -1,30 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:hajithon_teami_flutter_app/services/profile/model.dart';
 import 'package:hajithon_teami_flutter_app/view_model/strict/strict_model.dart';
-import 'package:hajithon_teami_flutter_app/view_model/user/user_model.dart';
 
 class ProfileStateListview extends StatelessWidget {
-  final List<UserModel> users;
+  final List<Profile> users;
 
   const ProfileStateListview({
     super.key,
     required this.users,
   });
 
+  WakeUpState statusToWakeUpState(int status) {
+    if (status == 0) {
+      return WakeUpState.sleeping;
+    } else if (status == 1) {
+      return WakeUpState.wakeUp;
+    } else if (status == 2) {
+      return WakeUpState.wakeUpLate;
+    } else {
+      return WakeUpState.quizCompleted;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
+    return ListView(
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
-      itemBuilder: (context, index) {
-        final user = users[index];
-
-        return ProfileState(
-          imageUrl: user.profileImageUrl,
-          state: user.state,
-        );
-      },
-      separatorBuilder: (context, index) => const SizedBox(width: 12.0),
-      itemCount: users.length,
+      children: users
+          .where((user) => user.getTodayWake() != null)
+          .map(
+            (user) => Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: ProfileState(
+                imageUrl: user.profileImage ?? '',
+                state: statusToWakeUpState(user.getTodayWake()!.status),
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 }

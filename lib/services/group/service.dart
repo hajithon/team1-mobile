@@ -1,11 +1,15 @@
 import 'package:get/get.dart';
 import 'package:hajithon_teami_flutter_app/services/group/model.dart';
 import 'package:hajithon_teami_flutter_app/services/group/repository.dart';
+import 'package:hajithon_teami_flutter_app/services/profile/model.dart';
 
 class GroupService extends GetxController {
   final Rx<List<Group>> _joinedGroups = Rx([]);
   List<Group> get joinedGroups => _joinedGroups.value;
-  final GroupRepository repository;
+  final Rx<List<Profile>> _members = Rx([]);
+  List<Profile> get members => _members.value;
+
+  GroupRepository repository;
 
   GroupService({GroupRepository? repository}) : repository = repository ?? GroupRepository();
 
@@ -17,6 +21,10 @@ class GroupService extends GetxController {
     _joinedGroups.value = newJoinedGroups;
 
     return newGroup;
+  }
+
+  Future<void> fetchMemebers() async {
+    _members.value = await repository.getMemebers();
   }
 
   Future<List<Group>> getGroupByName(String name) async {

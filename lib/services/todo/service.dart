@@ -15,6 +15,7 @@ class TodoService extends GetxController {
 
     List<Todo> newTodos = List.from(todos);
     newTodos.add(newTodo);
+    newTodos.sort((a, b) => a.todoDate.difference(b.todoDate).inSeconds);
     _todos.value = newTodos;
 
     return newTodo;
@@ -26,11 +27,14 @@ class TodoService extends GetxController {
     List<Todo> newTodos = List.from(todos);
     newTodos.removeWhere((todo) => todo.id == todoId);
     newTodos.add(updatedTodo);
+    newTodos.sort((a, b) => a.todoDate.difference(b.todoDate).inSeconds);
     _todos.value = newTodos;
   }
 
   Future<void> fetchTodos() async {
-    _todos.value = await repository.getTodos();
+    List<Todo> newTodos = await repository.getTodos();
+    newTodos.sort((a, b) => a.todoDate.difference(b.todoDate).inSeconds);
+    _todos.value = newTodos;
   }
 
   Future<void> deleteTodo(int id) async {
