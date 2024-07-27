@@ -12,7 +12,7 @@ class AppPages {
     GetPage(name: TestScreen.routeName, page: () => const TestScreen()),
     GetPage(name: LandingScreen.routeName, page: () => const LandingScreen()),
     GetPage(name: LoginScreen.routeName, page: () => const LoginScreen()),
-    GetPage(name: RegisterScreen.routeName, page: () => const RegisterScreen()),
+    GetPage(name: RegisterScreen.routeName, page: () => RegisterScreen()),
     GetPage(name: HomeScreen.routeName, page: () => const HomeScreen(), middlewares: [LoginMiddleware()]),
     GetPage(name: ProfileOnoboardingScreen.routeName, page: () => const ProfileOnoboardingScreen(), middlewares: [LoginMiddleware()]),
   ];
