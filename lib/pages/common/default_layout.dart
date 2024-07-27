@@ -31,12 +31,17 @@ class DefaultLayout extends StatelessWidget {
       child: child,
     );
 
-    return Scaffold(
-      backgroundColor: backgroundColor ?? Colors.white,
-      appBar: _renderDefaultAppBar(title: title),
-      body: safeAreaDisabled ? paddedBody : SafeArea(child: paddedBody),
-      bottomNavigationBar: bottomNavigationBar,
-      floatingActionButton: floatingActionButton,
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        backgroundColor: backgroundColor ?? Colors.white,
+        appBar: _renderDefaultAppBar(title: title),
+        body: safeAreaDisabled ? paddedBody : SafeArea(child: paddedBody),
+        bottomNavigationBar: bottomNavigationBar,
+        floatingActionButton: floatingActionButton,
+      ),
     );
   }
 }
