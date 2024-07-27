@@ -9,6 +9,7 @@ import 'package:hajithon_teami_flutter_app/component/todolist/todolist_listview.
 import 'package:hajithon_teami_flutter_app/component/user/profile_state_listview.dart';
 import 'package:hajithon_teami_flutter_app/const/color/color.dart';
 import 'package:hajithon_teami_flutter_app/pages/group/group_create/group_create_name_screen.dart';
+import 'package:hajithon_teami_flutter_app/services/group/service.dart';
 import 'package:hajithon_teami_flutter_app/services/news/service.dart';
 import 'package:hajithon_teami_flutter_app/services/todo/service.dart';
 import 'package:hajithon_teami_flutter_app/view_model/strict/strict_model.dart';
@@ -30,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     Get.find<NewsService>().fetchNews();
     Get.find<TodoService>().fetchTodos();
+    Get.find<GroupService>().fetchMemebers();
 
     initializeDateFormatting();
   }
@@ -75,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 16),
             SizedBox(
               height: 90,
-              child: ProfileStateListview(users: _userList),
+              child: Obx(() => ProfileStateListview(users: Get.find<GroupService>().members)),
             ),
 
             // 뉴스 및 퀴즈 풀러가기 카드

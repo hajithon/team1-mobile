@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:hajithon_teami_flutter_app/network/api.dart';
 import 'package:hajithon_teami_flutter_app/services/group/model.dart';
+import 'package:hajithon_teami_flutter_app/services/profile/model.dart';
 
 class GroupRepository {
   final ApiProvider api;
@@ -51,6 +52,13 @@ class GroupRepository {
 
     Response response = await api.dio.patch(url, data: data);
     return Group.fromJson(response.data);
+  }
+
+  Future<List<Profile>> getMemebers() async {
+    String url = "/group/user_status/";
+
+    Response response = await api.dio.get(url);
+    return (response.data[0]['users'] as List).map((e) => Profile.fromJson(e)).toList();
   }
 
   Future<Group> inviteMemeber(int groupId, String email) async {
