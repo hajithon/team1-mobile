@@ -27,11 +27,17 @@ class WeeklyStrictCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                title,
-                style: TextStyles.titleTextStyle.copyWith(
-                  fontSize: 16.0,
-                ),
+              Row(
+                children: [
+                  Image.asset('asset/bud.png'),
+                  const SizedBox(width: 4),
+                  Text(
+                    title,
+                    style: TextStyles.titleTextStyle.copyWith(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ],
               ),
               TextButton(
                 onPressed: () {},

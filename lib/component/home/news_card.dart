@@ -27,11 +27,17 @@ class NewsCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            title,
-            style: TextStyles.titleTextStyle.copyWith(
-              fontSize: 16.0,
-            ),
+          Row(
+            children: [
+              Image.asset('asset/sun.png'),
+              const SizedBox(width: 4),
+              Text(
+                title,
+                style: TextStyles.titleTextStyle.copyWith(
+                  fontSize: 16.0,
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 12.0),
           Column(
