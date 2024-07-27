@@ -21,6 +21,16 @@ class AuthService extends GetxController {
     return this;
   }
 
+  Future<void> login(String email, String password) async {
+    final newToken = await repository.login(email, password);
+    await jwt.setToken(newToken);
+  }
+
+  Future<void> register(String email, String password) async {
+    final newToken = await repository.register(email, password);
+    await jwt.setToken(newToken);
+  }
+
   ///Throws exception and route to LoginPage if refresh faild
   Future<void> refreshAcessToken() async {
     // refreshTokenApi의 동시 다발적인 호출을 방지하기 위해 completer를 사용함. 동시 다발적으로 이 함수를 호출해도 api는 1번만 호출 됨.

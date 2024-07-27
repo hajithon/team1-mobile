@@ -17,4 +17,30 @@ class AuthRepository {
     Response response = await api.dio.get(url, options: Options(headers: headers));
     return JwtToken(accessToken: response.data['tokens']['accessToken'], refreshToken: response.data['tokens']['refreshToken']);
   }
+
+  Future<JwtToken> login(String email, String password) async {
+    String url = '/login/';
+
+    Map<String, dynamic> data = {
+      "email": email,
+      "password": password,
+    };
+
+    Response response = await api.dio.post(url, data: data);
+
+    return JwtToken(accessToken: response.data['token']['access'], refreshToken: response.data['token']['refresh']);
+  }
+
+  Future<JwtToken> register(String email, String password) async {
+    String url = '/register/';
+
+    Map<String, dynamic> data = {
+      "email": email,
+      "password": password,
+    };
+
+    Response response = await api.dio.post(url, data: data);
+
+    return JwtToken(accessToken: response.data['token']['access'], refreshToken: response.data['token']['refresh']);
+  }
 }
