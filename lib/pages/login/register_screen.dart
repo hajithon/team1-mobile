@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:hajithon_teami_flutter_app/component/common/column_form_field_widget.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_elevated_button.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.dart';
@@ -51,7 +51,7 @@ class RegisterScreen extends StatelessWidget {
           ),
           CustomElevatedBotton(
             text: '완료',
-            onPressed: () => context.pop(),
+            onPressed: () => Get.back(),
           ),
         ],
       ),

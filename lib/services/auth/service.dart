@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:hajithon_teami_flutter_app/pages/login/landing_screen.dart';
-import 'package:hajithon_teami_flutter_app/routes/routes.dart';
 import 'package:hajithon_teami_flutter_app/services/auth/jwt.dart';
 import 'package:hajithon_teami_flutter_app/services/auth/repository.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -43,7 +42,7 @@ class AuthService extends GetxController {
       _refreshTokenApiCompleter.complete();
     } catch (e) {
       await logout();
-      router.goNamed(LandingScreen.routeName);
+      Get.offAllNamed(LandingScreen.routeName);
       _refreshTokenApiCompleter.completeError(e);
       rethrow;
     }

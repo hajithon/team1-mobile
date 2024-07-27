@@ -13,7 +13,7 @@ class AppLoader {
     Get.lazyPut<ApiProvider>(() => ApiProvider());
 
     // await Hive.initFlutter();
-    Get.lazyPut(() => AuthService());
+    await Get.putAsync(AuthService().init);
 
     // FlutterNativeSplash.remove();
   }

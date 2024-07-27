@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_elevated_button.dart';
 import 'package:hajithon_teami_flutter_app/pages/common/default_layout.dart';
 import 'package:hajithon_teami_flutter_app/pages/login/login_screen.dart';
@@ -19,14 +19,14 @@ class LandingScreen extends StatelessWidget {
         children: [
           CustomElevatedBotton(
             text: '이메일로 시작하기',
-            onPressed: () => context.pushNamed(
+            onPressed: () => Get.to(
               RegisterScreen.routeName,
             ),
           ),
           const SizedBox(height: 4.0),
           CustomWhiteElevatedButton(
             text: '로그인하기',
-            onPressed: () => context.pushNamed(
+            onPressed: () => Get.to(
               LoginScreen.routeName,
             ),
           ),
