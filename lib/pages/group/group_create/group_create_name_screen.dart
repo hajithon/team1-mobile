@@ -21,6 +21,7 @@ class _GroupCreateNameScreenState extends State<GroupCreateNameScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
+      title: '그룹 만들기',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

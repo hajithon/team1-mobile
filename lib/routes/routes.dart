@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:hajithon_teami_flutter_app/core/middleware/login.dart';
+import 'package:hajithon_teami_flutter_app/pages/group/group_create/group_create_complete_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/group/group_create/group_create_name_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/group/group_create/group_create_time_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/home/home_screen.dart';
@@ -39,5 +40,9 @@ class AppPages {
       name: GroupCreateTimeScreen.routeName,
       page: () => const GroupCreateTimeScreen(),
     ),
+    GetPage(
+      name: GroupCreateCompleteScreen.routeName,
+      page: () => const GroupCreateCompleteScreen(),
+    )
   ];
 }
