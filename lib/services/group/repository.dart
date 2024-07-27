@@ -29,4 +29,11 @@ class GroupRepository {
     Response response = await api.dio.get(url, data: data);
     return (response.data as List).map((e) => Group.fromJson(e)).toList();
   }
+
+  Future<List<Group>> getJoinedGroup() async {
+    String url = "/user/group/";
+    Response response = await api.dio.get(url);
+
+    return (response.data as List).map((e) => Group.fromJson(e)).toList();
+  }
 }
