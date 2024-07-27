@@ -47,21 +47,31 @@ class TestScreen extends StatelessWidget {
             },
             child: const Text('register')),
         TextButton(
-            onPressed: () {
-              Get.find<AuthService>().login('test@test.com', 'test1234');
-            },
-            child: const Text('login')),
+          onPressed: () {
+            Get.find<AuthService>().login('test@test.com', 'test1234');
+          },
+          child: const Text('login'),
+        ),
         TextButton(
-            onPressed: () {
-              Get.put(ProfileService());
-              Get.find<ProfileService>().fetchProfile();
-            },
-            child: const Text('getprofile')),
+          onPressed: () {
+            Get.put(ProfileService());
+            Get.find<ProfileService>().patchProfile(description: 'hohoho');
+          },
+          child: const Text('patch profile'),
+        ),
         TextButton(
-            onPressed: () {
-              Get.find<AuthService>().logout();
-            },
-            child: const Text('logout')),
+          onPressed: () {
+            Get.put(ProfileService());
+            Get.find<ProfileService>().fetchProfile();
+          },
+          child: const Text('getprofile'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.find<AuthService>().logout();
+          },
+          child: const Text('logout'),
+        ),
       ]),
     );
   }
