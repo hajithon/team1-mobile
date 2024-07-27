@@ -10,8 +10,8 @@ import 'package:hajithon_teami_flutter_app/const/color/color.dart';
 import 'package:hajithon_teami_flutter_app/pages/common/default_layout.dart';
 import 'package:hajithon_teami_flutter_app/pages/group/group_create/group_create_name_screen.dart';
 import 'package:hajithon_teami_flutter_app/services/news/service.dart';
+import 'package:hajithon_teami_flutter_app/services/todo/service.dart';
 import 'package:hajithon_teami_flutter_app/view_model/strict/strict_model.dart';
-import 'package:hajithon_teami_flutter_app/view_model/todo/todo_model.dart';
 import 'package:hajithon_teami_flutter_app/view_model/user/user_model.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     Get.find<NewsService>().fetchNews();
+    Get.find<TodoService>().fetchTodos();
 
     initializeDateFormatting();
   }
@@ -36,55 +37,58 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
+      backgroundColor: const Color(0xFFF6F6F6),
       floatingActionButton: const _GroupFloatingActionButton(),
-      child: SingleChildScrollView(
+      child: ListView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // 프로필 상태 리스트뷰
-            SizedBox(
-              height: 90,
-              child: ProfileStateListview(users: _userList),
-            ),
+        children: [
+          // 프로필 상태 리스트뷰
+          SizedBox(
+            height: 90,
+            child: ProfileStateListview(users: _userList),
+          ),
 
-            // 뉴스 및 퀴즈 풀러가기 카드
-            Obx(
-              () => NewsCard(
-                title: '좋은 아침이에요!',
-                headlines: Get.find<NewsService>().news.map((e) => e.title).toList(),
+          // 뉴스 및 퀴즈 풀러가기 카드
+          Obx(
+            () => NewsCard(
+              title: '좋은 아침이에요!',
+              headlines: Get.find<NewsService>().news.map((e) => e.title).toList(),
+            ),
+          ),
+          const SizedBox(height: 14.0),
+
+          // 주간 스트릭 카드
+          WeeklyStrictCard(
+            title: '이번 주 n일 연속 성공헀어요!',
+            stricts: _weeklyData,
+          ),
+          const SizedBox(height: 28.0),
+
+          // 투두리스트
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                '오늘의 할 일',
+                style: TextStyles.titleTextStyle.copyWith(fontSize: 20.0),
               ),
-            ),
-            const SizedBox(height: 14.0),
-
-            // 주간 스트릭 카드
-            WeeklyStrictCard(
-              title: '이번 주 n일 연속 성공헀어요!',
-              stricts: _weeklyData,
-            ),
-            const SizedBox(height: 28.0),
-
-            // 투두리스트
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    '오늘의 할 일',
-                    style: TextStyles.titleTextStyle.copyWith(
-                      fontSize: 20.0,
-                    ),
-                  ),
-                  const SizedBox(height: 24.0),
-                  TodolistListview(todos: _todoData),
-                  const _AddTodoFormField(),
-                ],
-              ),
-            )
-          ],
-        ),
+              const SizedBox(height: 12),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.white,
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+                child: Column(
+                  children: [
+                    Obx(() => TodolistListview(todos: Get.find<TodoService>().todos)),
+                    const _AddTodoFormField(),
+                  ],
+                ),
+              )
+            ],
+          )
+        ],
       ),
     );
   }
@@ -186,37 +190,6 @@ class _AddTodoFormFieldState extends State<_AddTodoFormField> {
     );
   }
 }
-
-List<TodoModel> _todoData = [
-  TodoModel(
-    title: '아침에 일어나기',
-    isDone: false,
-  ),
-  TodoModel(
-    title: '아침에 일어나기',
-    isDone: false,
-  ),
-  TodoModel(
-    title: '아침에 일어나기',
-    isDone: false,
-  ),
-  TodoModel(
-    title: '아침에 일어나기',
-    isDone: false,
-  ),
-  TodoModel(
-    title: '아침에 일어나기',
-    isDone: false,
-  ),
-  TodoModel(
-    title: '아침에 일어나기',
-    isDone: false,
-  ),
-  TodoModel(
-    title: '아침에 일어나기',
-    isDone: false,
-  ),
-];
 
 List<StrictModel> _weeklyData = [
   StrictModel(

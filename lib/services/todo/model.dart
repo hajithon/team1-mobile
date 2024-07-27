@@ -3,8 +3,8 @@ part 'model.g.dart';
 
 @JsonSerializable()
 class Todo {
-  final int id;
-  @JsonKey(name: 'user')
+  final int? id;
+  @JsonKey(name: 'user_id')
   final int userId;
   final String title;
   @JsonKey(name: 'status')
@@ -13,7 +13,7 @@ class Todo {
   final DateTime todoDate;
 
   Todo({
-    required this.id,
+    this.id,
     required this.userId,
     required this.title,
     required this.done,

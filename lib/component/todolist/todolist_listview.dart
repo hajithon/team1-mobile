@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.dart';
 import 'package:hajithon_teami_flutter_app/const/color/color.dart';
-import 'package:hajithon_teami_flutter_app/view_model/todo/todo_model.dart';
+import 'package:hajithon_teami_flutter_app/services/todo/model.dart';
+import 'package:hajithon_teami_flutter_app/services/todo/service.dart';
 
 class TodolistListview extends StatelessWidget {
-  final List<TodoModel> todos;
+  final List<Todo> todos;
 
   const TodolistListview({
     super.key,
@@ -12,56 +14,56 @@ class TodolistListview extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Column(children: [
-        for (int i = 0; i < todos.length; i++) ...[
-          _TodoTile.fromModel(todos[i]),
-          const SizedBox(height: 18.0),
-        ],
-      ]);
+  Widget build(BuildContext context) => Column(
+      children: todos
+          .map(
+            (e) => _TodoTile(
+              todo: e,
+              onTap: () => Get.find<TodoService>().editTodo(e.id!, done: !e.done),
+            ),
+          )
+          .toList());
 }
 
-
-
 class _TodoTile extends StatelessWidget {
-  final String title;
-  final bool isDone;
+  final Todo todo;
+  final void Function()? onTap;
 
   const _TodoTile({
-    required this.title,
-    required this.isDone,
+    required this.todo,
+    this.onTap,
   });
-
-  factory _TodoTile.fromModel(TodoModel model) {
-    return _TodoTile(
-      title: model.title,
-      isDone: model.isDone,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-          value: isDone,
-          onChanged: (value) {},
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 9),
+        child: Row(
+          children: [
+            Checkbox(
+              value: todo.done,
+              onChanged: (value) {},
 
-          // 기본 패딩 없애기
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          visualDensity: const VisualDensity(
-            horizontal: VisualDensity.minimumDensity,
-            vertical: VisualDensity.minimumDensity,
-          ),
+              // 기본 패딩 없애기
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              visualDensity: const VisualDensity(
+                horizontal: VisualDensity.minimumDensity,
+                vertical: VisualDensity.minimumDensity,
+              ),
+            ),
+            const SizedBox(width: 16.0),
+            Text(
+              todo.title,
+              style: TextStyles.subTitleTextStyle.copyWith(
+                fontSize: 16.0,
+                color: titleTextColor,
+              ),
+            ),
+          ],
         ),
-        const SizedBox(width: 16.0),
-        Text(
-          title,
-          style: TextStyles.subTitleTextStyle.copyWith(
-            fontSize: 16.0,
-            color: titleTextColor,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

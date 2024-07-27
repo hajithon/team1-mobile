@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.dart';
-import 'package:hajithon_teami_flutter_app/const/color/color.dart';
 import 'package:hajithon_teami_flutter_app/view_model/strict/strict_model.dart';
 import 'package:intl/intl.dart';
 
@@ -17,7 +16,10 @@ class WeeklyStrictCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(color: inputBackgroundColor),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: Colors.white,
+      ),
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
