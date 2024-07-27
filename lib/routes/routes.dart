@@ -43,7 +43,7 @@ class AppPages {
     ),
     GetPage(
       name: GroupCreateTimeScreen.routeName,
-      page: () => const GroupCreateTimeScreen(),
+      page: () => GroupCreateTimeScreen(),
     ),
     GetPage(
       name: GroupCreateCompleteScreen.routeName,

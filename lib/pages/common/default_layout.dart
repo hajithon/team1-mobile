@@ -27,7 +27,6 @@ class DefaultLayout extends StatelessWidget {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         backgroundColor: backgroundColor ?? Colors.white,
         appBar: _renderDefaultAppBar(title: title),
         body: Padding(
