@@ -19,14 +19,14 @@ class LandingScreen extends StatelessWidget {
         children: [
           CustomElevatedButton(
             text: '이메일로 시작하기',
-            onPressed: () => Get.to(
+            onPressed: () => Get.toNamed(
               RegisterScreen.routeName,
             ),
           ),
           const SizedBox(height: 4.0),
           CustomWhiteElevatedButton(
             text: '로그인하기',
-            onPressed: () => Get.to(
+            onPressed: () => Get.toNamed(
               LoginScreen.routeName,
             ),
           ),

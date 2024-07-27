@@ -7,7 +7,6 @@ import 'package:hajithon_teami_flutter_app/component/common/custom_text_form_fie
 import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.dart';
 import 'package:hajithon_teami_flutter_app/pages/common/default_layout.dart';
 import 'package:hajithon_teami_flutter_app/pages/group/group_create/group_create_complete_screen.dart';
-import 'package:hajithon_teami_flutter_app/pages/home/home_screen.dart';
 import 'package:hajithon_teami_flutter_app/services/group/model.dart';
 import 'package:hajithon_teami_flutter_app/services/group/service.dart';
 

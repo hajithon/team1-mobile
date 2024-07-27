@@ -11,6 +11,7 @@ import 'package:hajithon_teami_flutter_app/pages/login/register_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/onboarding/pages/binding.dart';
 import 'package:hajithon_teami_flutter_app/pages/onboarding/pages/profile.dart';
 import 'package:hajithon_teami_flutter_app/pages/quiz/news_screen.dart';
+import 'package:hajithon_teami_flutter_app/pages/quiz/quiz_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/test/page.dart';
 
 class AppPages {
@@ -58,6 +59,10 @@ class AppPages {
     GetPage(
       name: NewsScreen.routeName,
       page: () => const NewsScreen(),
+    ),
+    GetPage(
+      name: QuizScreen.routeName,
+      page: () => const QuizScreen(),
     ),
   ];
 }
