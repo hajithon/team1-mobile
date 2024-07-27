@@ -20,59 +20,48 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      safeAreaDisabled: true,
-      child: CustomScrollView(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        slivers: [
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Text(
-                    '로그인하기',
-                    style: TextStyles.titleTextStyle,
-                  ),
-                  const SizedBox(height: 12.0),
-                  const Text(
-                    '회원정보를 입력해주세요.',
-                    style: TextStyles.subTitleTextStyle,
-                  ),
-                  const SizedBox(height: 20.0),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        ColumnFormFieldWidget(
-                          label: '이메일',
-                          hintText: 'example@email.com',
-                          onChanged: (value) {
-                            setState(() {
-                              email = value;
-                            });
-                          },
-                        ),
-                        const SizedBox(height: 36.0),
-                        ColumnFormFieldWidget(
-                          label: '비밀번호',
-                          hintText: '비밀번호를 입력해주세요.',
-                          obscureText: true,
-                          onChanged: (value) {
-                            setState(() {
-                              email = value;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  const CustomElevatedButton(
-                    text: '로그인하기',
-                  ),
-                ],
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text(
+            '로그인하기',
+            style: TextStyles.titleTextStyle,
+          ),
+          const SizedBox(height: 12.0),
+          const Text(
+            '회원정보를 입력해주세요.',
+            style: TextStyles.subTitleTextStyle,
+          ),
+          const SizedBox(height: 20.0),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ColumnFormFieldWidget(
+                  label: '이메일',
+                  hintText: 'example@email.com',
+                  onChanged: (value) {
+                    setState(() {
+                      email = value;
+                    });
+                  },
+                ),
+                const SizedBox(height: 36.0),
+                ColumnFormFieldWidget(
+                  label: '비밀번호',
+                  hintText: '비밀번호를 입력해주세요.',
+                  obscureText: true,
+                  onChanged: (value) {
+                    setState(() {
+                      email = value;
+                    });
+                  },
+                ),
+              ],
             ),
+          ),
+          const CustomElevatedButton(
+            text: '로그인하기',
           ),
         ],
       ),
