@@ -5,7 +5,7 @@ import 'package:hajithon_teami_flutter_app/component/common/custom_elevated_butt
 import 'package:hajithon_teami_flutter_app/component/common/custom_text_form_field.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.dart';
 import 'package:hajithon_teami_flutter_app/pages/common/default_layout.dart';
-import 'package:hajithon_teami_flutter_app/pages/home/home_screen.dart';
+import 'package:hajithon_teami_flutter_app/pages/onboarding/pages/profile.dart';
 import 'package:hajithon_teami_flutter_app/services/auth/service.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -86,7 +86,7 @@ class RegisterScreen extends StatelessWidget {
                     try {
                       isLoading.value = true;
                       await Get.find<AuthService>().register(email.value, password.value);
-                      Get.offAllNamed(HomeScreen.routeName);
+                      Get.offAllNamed(ProfileOnoboardingScreen.routeName);
                     } finally {
                       isLoading.value = false;
                     }
