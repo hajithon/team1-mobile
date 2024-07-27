@@ -13,6 +13,8 @@ const primaryColor = Color(0xFFFF6C3E);
 /// 기상
 const orangeBright = Color(0xFFFFB29A);
 
+const orangeLight = Color(0xFFFFE0D6);
+
 /// 늦잠
 const brownLight = Color(0xFF94837D);
 
