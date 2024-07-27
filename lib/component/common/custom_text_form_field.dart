@@ -7,6 +7,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? errorText;
   final bool obscureText;
   final bool autofucus;
+  final TextInputType? keyboardType;
   final String? label;
   final ValueChanged<String>? onChanged;
 
@@ -17,6 +18,7 @@ class CustomTextFormField extends StatelessWidget {
     this.label,
     this.obscureText = false,
     this.autofucus = false,
+    this.keyboardType,
     this.onChanged,
   });
 
@@ -38,6 +40,7 @@ class CustomTextFormField extends StatelessWidget {
               )
             : Container(),
         TextField(
+          keyboardType: keyboardType,
           obscureText: obscureText,
           autofocus: autofucus,
           onChanged: onChanged,

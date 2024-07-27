@@ -9,7 +9,6 @@ import 'package:hajithon_teami_flutter_app/services/auth/service.dart';
 import 'package:hajithon_teami_flutter_app/services/group/model.dart';
 import 'package:hajithon_teami_flutter_app/services/group/service.dart';
 import 'package:hajithon_teami_flutter_app/services/profile/service.dart';
-import 'package:hajithon_teami_flutter_app/services/todo/service.dart';
 
 class TestScreen extends StatelessWidget {
   static const String routeName = '/test';
@@ -24,7 +23,8 @@ class TestScreen extends StatelessWidget {
     );
   }
 
-  Widget linkToRouteWithArgs(String route, String title, Map<String, dynamic> args) {
+  Widget linkToRouteWithArgs(
+      String route, String title, Map<String, dynamic> args) {
     return TextButton(
       onPressed: () {
         Get.toNamed(route, arguments: args);
@@ -74,7 +74,8 @@ class TestScreen extends StatelessWidget {
         TextButton(
           onPressed: () {
             Get.put(GroupService());
-            Get.find<GroupService>().createGroup('test group', const Time(hour: 7, minute: 0));
+            Get.find<GroupService>()
+                .createGroup('test group', const Time(hour: 7, minute: 0));
           },
           child: const Text('create group'),
         ),
@@ -101,8 +102,8 @@ class TestScreen extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            Get.put(TodoService());
-            Get.find<TodoService>().createTodo('test todo');
+            // Get.put(TodoService());
+            // Get.find<TodoService>().createTodo('test todo');
           },
           child: const Text('create todo'),
         ),

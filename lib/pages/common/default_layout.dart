@@ -11,9 +11,6 @@ class DefaultLayout extends StatelessWidget {
   final Widget? bottomNavigationBar;
   final Widget? floatingActionButton;
 
-  /// SafeArea를 사용하지 않을 경우 true로 설정하세요. 기본은 false.
-  final bool safeAreaDisabled;
-
   const DefaultLayout({
     super.key,
     required this.child,
@@ -21,22 +18,27 @@ class DefaultLayout extends StatelessWidget {
     this.title,
     this.bottomNavigationBar,
     this.floatingActionButton,
-    this.safeAreaDisabled = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    final paddedBody = Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: child,
-    );
-
-    return Scaffold(
-      backgroundColor: backgroundColor ?? Colors.white,
-      appBar: _renderDefaultAppBar(title: title),
-      body: safeAreaDisabled ? paddedBody : SafeArea(child: paddedBody),
-      bottomNavigationBar: bottomNavigationBar,
-      floatingActionButton: floatingActionButton,
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: backgroundColor ?? Colors.white,
+        appBar: _renderDefaultAppBar(title: title),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: child,
+          ),
+        ),
+        bottomNavigationBar: bottomNavigationBar,
+        floatingActionButton: floatingActionButton,
+      ),
     );
   }
 }
@@ -45,6 +47,7 @@ AppBar _renderDefaultAppBar({
   String? title,
 }) {
   return AppBar(
+    surfaceTintColor: Colors.transparent,
     centerTitle: false,
     backgroundColor: Colors.white,
     elevation: 0,
