@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // 뉴스 및 퀴즈 풀러가기 카드
             const NewsCard(
-              title: '좋은 아침이에요!',
+              title: '☀️ 좋은 아침이에요!',
               headlines: [
                 '오픈AI, 검색 엔진 공개.. 구글에 도전장',
                 '테슬라, 1조 달러 시가총액 돌파',
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // 주간 스트릭 카드
             WeeklyStrictCard(
-              title: '이번 주 n일 연속 성공헀어요!',
+              title: '🌱 이번 주 n일 연속 성공헀어요!',
               stricts: _weeklyData,
             ),
             const SizedBox(height: 28.0),

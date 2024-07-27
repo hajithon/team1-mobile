@@ -12,6 +12,9 @@ void main() async {
       debugShowCheckedModeBanner: false,
       initialRoute: TestScreen.routeName,
       getPages: AppPages.pages,
+      theme: ThemeData(
+        fontFamily: 'SUIT',
+      ),
     ),
   );
 }
