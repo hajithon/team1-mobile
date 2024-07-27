@@ -28,16 +28,17 @@ class DefaultLayout extends StatelessWidget {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-      backgroundColor: backgroundColor ?? Colors.white,
-      appBar: _renderDefaultAppBar(title: title),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: child,
+        backgroundColor: backgroundColor ?? Colors.white,
+        appBar: _renderDefaultAppBar(title: title),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: child,
+          ),
         ),
+        bottomNavigationBar: bottomNavigationBar,
+        floatingActionButton: floatingActionButton,
       ),
-      bottomNavigationBar: bottomNavigationBar,
-      floatingActionButton: floatingActionButton,
     );
   }
 }
