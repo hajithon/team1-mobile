@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hajithon_teami_flutter_app/component/common/column_form_field_widget.dart';
+import 'package:get/get.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_elevated_button.dart';
+import 'package:hajithon_teami_flutter_app/component/common/custom_text_form_field.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.dart';
 import 'package:hajithon_teami_flutter_app/pages/common/default_layout.dart';
+import 'package:hajithon_teami_flutter_app/pages/home/home_screen.dart';
+import 'package:hajithon_teami_flutter_app/services/auth/service.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login';
@@ -14,8 +17,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String email = '';
-  String password = '';
+  final Rx<String> email = Rx('');
+  final Rx<String> password = Rx('');
+  final Rx<bool> isLoading = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -44,31 +48,50 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        ColumnFormFieldWidget(
+                        CustomTextFormField(
                           label: '이메일',
                           hintText: 'example@email.com',
                           onChanged: (value) {
-                            setState(() {
-                              email = value;
-                            });
+                            email.value = value;
                           },
                         ),
                         const SizedBox(height: 36.0),
-                        ColumnFormFieldWidget(
+                        CustomTextFormField(
                           label: '비밀번호',
                           hintText: '비밀번호를 입력해주세요.',
                           obscureText: true,
                           onChanged: (value) {
-                            setState(() {
-                              email = value;
-                            });
+                            password.value = value;
                           },
                         ),
                       ],
                     ),
                   ),
-                  const CustomElevatedButton(
-                    text: '로그인하기',
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Obx(() {
+                      if (isLoading.value) {
+                        return CustomButton.loading();
+                      }
+                      if (email.value.isNotEmpty && password.value.isNotEmpty) {
+                        return CustomButton(
+                          child: const Text('로그인'),
+                          onTap: () async {
+                            try {
+                              isLoading.value = true;
+
+                              await Get.find<AuthService>().login(email.value, password.value);
+                              Get.offAllNamed(HomeScreen.routeName);
+                            } finally {
+                              isLoading.value = false;
+                            }
+                          },
+                        );
+                      }
+                      return CustomButton.disabled(
+                        child: const Text('로그인'),
+                      );
+                    }),
                   ),
                 ],
               ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:hajithon_teami_flutter_app/component/common/column_form_field_widget.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_elevated_button.dart';
+import 'package:hajithon_teami_flutter_app/component/common/custom_text_form_field.dart';
 import 'package:hajithon_teami_flutter_app/component/common/custom_text_style.dart';
 import 'package:hajithon_teami_flutter_app/pages/common/default_layout.dart';
 
@@ -28,20 +28,20 @@ class RegisterScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20.0),
           const Expanded(
-            child: const Column(
+            child: Column(
               children: [
-                ColumnFormFieldWidget(
+                CustomTextFormField(
                   label: '이메일',
                   hintText: 'example@email.com',
                 ),
                 SizedBox(height: 24.0),
-                ColumnFormFieldWidget(
+                CustomTextFormField(
                   label: '비밀번호',
                   hintText: '숫자 포함 영문 10글자 이상',
                   obscureText: true,
                 ),
                 SizedBox(height: 24.0),
-                ColumnFormFieldWidget(
+                CustomTextFormField(
                   label: '비밀번호 확인',
                   hintText: '비밀번호를 한 번 더 입력해주세요',
                   obscureText: true,
@@ -49,9 +49,12 @@ class RegisterScreen extends StatelessWidget {
               ],
             ),
           ),
-          CustomElevatedButton(
-            text: '완료',
-            onPressed: () => Get.back(),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: CustomButton(
+              child: const Text('완료'),
+              onTap: () => Get.back(),
+            ),
           ),
         ],
       ),

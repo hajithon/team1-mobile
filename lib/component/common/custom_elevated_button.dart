@@ -264,8 +264,8 @@ class CustomButton extends StatefulWidget {
     this.foregroundColor,
   })  : onTap = null,
         child = SizedBox(
-          width: 20,
-          height: 20,
+          width: 24,
+          height: 24,
           child: CircularProgressIndicator(color: foregroundColor ?? Colors.white, strokeWidth: 2),
         );
 

@@ -17,7 +17,7 @@ class CustomTextFormField extends StatelessWidget {
     this.label,
     this.obscureText = false,
     this.autofucus = false,
-    required this.onChanged,
+    this.onChanged,
   });
 
   @override
@@ -28,7 +28,13 @@ class CustomTextFormField extends StatelessWidget {
         label != null
             ? Padding(
                 padding: const EdgeInsets.only(bottom: 6),
-                child: Text(label!),
+                child: Text(
+                  label!,
+                  style: TextStyles.titleTextStyle.copyWith(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               )
             : Container(),
         TextField(
