@@ -12,7 +12,6 @@ News _$NewsFromJson(Map<String, dynamic> json) => News(
       url: json['url'] as String,
       summary: json['summary'] as String,
       publishedAt: DateTime.parse(json['published_at'] as String),
-      keyword: json['keyword'] as String,
     );
 
 Map<String, dynamic> _$NewsToJson(News instance) => <String, dynamic>{
@@ -21,5 +20,4 @@ Map<String, dynamic> _$NewsToJson(News instance) => <String, dynamic>{
       'url': instance.url,
       'summary': instance.summary,
       'published_at': instance.publishedAt.toIso8601String(),
-      'keyword': instance.keyword,
     };

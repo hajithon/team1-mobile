@@ -3,6 +3,7 @@ import 'package:hajithon_teami_flutter_app/core/middleware/login.dart';
 import 'package:hajithon_teami_flutter_app/pages/group/group_create/group_create_complete_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/group/group_create/group_create_name_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/group/group_create/group_create_time_screen.dart';
+import 'package:hajithon_teami_flutter_app/pages/home/binding.dart';
 import 'package:hajithon_teami_flutter_app/pages/home/home_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/login/landing_screen.dart';
 import 'package:hajithon_teami_flutter_app/pages/login/login_screen.dart';
@@ -32,7 +33,8 @@ class AppPages {
     GetPage(
       name: HomeScreen.routeName,
       page: () => const HomeScreen(),
-      // middlewares: [LoginMiddleware()],
+      middlewares: [LoginMiddleware()],
+      binding: HomePageBinding(),
     ),
     GetPage(
       name: GroupCreateNameScreen.routeName,
