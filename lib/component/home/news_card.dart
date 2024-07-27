@@ -46,10 +46,11 @@ class NewsCard extends StatelessWidget {
                 .toList(),
           ),
           const SizedBox(height: 20.0),
-          CustomElevatedButton(
-            text: '오늘의 뉴스/퀴즈 풀러가기',
-            onPressed: () {},
-            fontSize: 16.0,
+          const CustomButton(
+            child: const Text(
+              '오늘의 뉴스/퀴즈 풀러가기',
+              style: TextStyle(fontSize: 16),
+            ),
           ),
         ],
       ),
