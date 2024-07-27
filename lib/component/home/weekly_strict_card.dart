@@ -69,34 +69,29 @@ class _StrictDayBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = wakeUpState == null ? grey100 : wakeUpState!.color;
+    final textColor =
+        backgroundColor == grey100 || backgroundColor == orangeBright
+            ? Colors.black
+            : Colors.white;
+
     return AspectRatio(
       aspectRatio: 1.0,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4.0),
-          color: _getBackgroundColor(),
+          color: backgroundColor,
         ),
         padding: const EdgeInsets.all(8.0),
         child: Center(
           child: Text(
             DateFormat('E', 'ko_KR').format(date),
-            style: TextStyles.subTitleTextStyle,
+            style: TextStyles.subTitleTextStyle.copyWith(
+              color: textColor,
+            ),
           ),
         ),
       ),
     );
-  }
-
-  Color _getBackgroundColor() {
-    switch (wakeUpState) {
-      case WakeUpState.wakeUp:
-        return Colors.green;
-      case WakeUpState.wakeUpLate:
-        return Colors.red;
-      case WakeUpState.quizCompleted:
-        return Colors.blue;
-      default:
-        return Colors.grey;
-    }
   }
 }

@@ -17,3 +17,7 @@ const orangeBright = Color(0xFFFFB29A);
 const brownLight = Color(0xFF94837D);
 
 const brownDark = Color(0xFF5D514D);
+
+const grey300 = Color(0xFFC0BEBB);
+
+const grey100 = Color(0xFFECEBEA);
