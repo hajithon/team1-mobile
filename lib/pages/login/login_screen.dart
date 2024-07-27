@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
-                  const CustomElevatedBotton(
+                  const CustomElevatedButton(
                     text: '로그인하기',
                   ),
                 ],

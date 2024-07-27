@@ -17,7 +17,7 @@ class LandingScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          CustomElevatedBotton(
+          CustomElevatedButton(
             text: '이메일로 시작하기',
             onPressed: () => Get.to(
               RegisterScreen.routeName,

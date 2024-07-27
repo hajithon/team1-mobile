@@ -49,7 +49,7 @@ class RegisterScreen extends StatelessWidget {
               ],
             ),
           ),
-          CustomElevatedBotton(
+          CustomElevatedButton(
             text: '완료',
             onPressed: () => Get.back(),
           ),
