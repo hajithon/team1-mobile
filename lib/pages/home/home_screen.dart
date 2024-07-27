@@ -64,63 +64,61 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF6F6F6),
       floatingActionButton: const _GroupFloatingActionButton(),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: ListView(
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            children: [
-              const SizedBox(height: 16),
-              appbar(),
-              // 프로필 상태 리스트뷰
-              const SizedBox(height: 16),
-              SizedBox(
-                height: 90,
-                child: ProfileStateListview(users: _userList),
-              ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: ListView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          children: [
+            const SizedBox(height: 16),
+            appbar(),
+            // 프로필 상태 리스트뷰
+            const SizedBox(height: 16),
+            SizedBox(
+              height: 90,
+              child: ProfileStateListview(users: _userList),
+            ),
 
-              // 뉴스 및 퀴즈 풀러가기 카드
-              Obx(
-                () => NewsCard(
-                  title: '좋은 아침이에요!',
-                  headlines: Get.find<NewsService>().news.map((e) => e.title).toList(),
+            // 뉴스 및 퀴즈 풀러가기 카드
+            Obx(
+              () => NewsCard(
+                title: '좋은 아침이에요!',
+                headlines: Get.find<NewsService>().news.map((e) => e.title).toList(),
+              ),
+            ),
+            const SizedBox(height: 14.0),
+
+            // 주간 스트릭 카드
+            WeeklyStrictCard(
+              title: '이번 주 n일 연속 성공헀어요!',
+              stricts: _weeklyData,
+            ),
+            const SizedBox(height: 28.0),
+
+            // 투두리스트
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  '오늘의 할 일',
+                  style: TextStyles.titleTextStyle.copyWith(fontSize: 20.0),
                 ),
-              ),
-              const SizedBox(height: 14.0),
-
-              // 주간 스트릭 카드
-              WeeklyStrictCard(
-                title: '이번 주 n일 연속 성공헀어요!',
-                stricts: _weeklyData,
-              ),
-              const SizedBox(height: 28.0),
-
-              // 투두리스트
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    '오늘의 할 일',
-                    style: TextStyles.titleTextStyle.copyWith(fontSize: 20.0),
+                const SizedBox(height: 12),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
                   ),
-                  const SizedBox(height: 12),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
-                    ),
-                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
-                    child: Column(
-                      children: [
-                        Obx(() => TodolistListview(todos: Get.find<TodoService>().todos)),
-                        const _AddTodoFormField(),
-                      ],
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),
+                  padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+                  child: Column(
+                    children: [
+                      Obx(() => TodolistListview(todos: Get.find<TodoService>().todos)),
+                      const _AddTodoFormField(),
+                    ],
+                  ),
+                )
+              ],
+            )
+          ],
         ),
       ),
     );
