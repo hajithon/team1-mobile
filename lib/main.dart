@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hajithon_teami_flutter_app/core/utils/loader.dart';
-import 'package:hajithon_teami_flutter_app/pages/home/home_screen.dart';
+import 'package:hajithon_teami_flutter_app/pages/test/page.dart';
 import 'package:hajithon_teami_flutter_app/routes/routes.dart';
 
 void main() async {
@@ -10,7 +10,7 @@ void main() async {
     GetMaterialApp(
       title: '하지톤 temai',
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.routeName,
+      initialRoute: TestScreen.routeName,
       getPages: AppPages.pages,
     ),
   );
