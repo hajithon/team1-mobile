@@ -17,4 +17,8 @@ class ProfileService extends GetxController {
   Future<void> patchProfile({XFile? profileImage, String? nickname, String? description}) async {
     _profile.value = await repository.patchProfile(profileImage: profileImage, nickname: nickname, description: description);
   }
+
+  Future<Profile> searchUserByEmail(String email) async {
+    return await repository.getUserByEmail(email);
+  }
 }

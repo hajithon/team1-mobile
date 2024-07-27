@@ -113,6 +113,13 @@ class TestScreen extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
+            Get.put(ProfileService());
+            Get.find<ProfileService>().searchUserByEmail('test@test.com');
+          },
+          child: const Text('search user by email'),
+        ),
+        TextButton(
+          onPressed: () {
             Get.find<AuthService>().logout();
           },
           child: const Text('logout'),

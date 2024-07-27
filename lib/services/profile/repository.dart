@@ -35,4 +35,15 @@ class ProfileRepository {
     Response response = await api.dio.patch(url, data: data);
     return Profile.fromJson(response.data);
   }
+
+  Future<Profile> getUserByEmail(String email) async {
+    String url = '/group/user_list/';
+
+    Map<String, dynamic> data = {
+      'email': email,
+    };
+
+    Response response = await api.dio.post(url, data: data);
+    return Profile.fromJson(response.data);
+  }
 }
