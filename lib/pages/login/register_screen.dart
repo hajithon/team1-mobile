@@ -14,44 +14,52 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const Text(
-            '더 좋은 아침을 만날 준비 됐나요?',
-            style: TextStyles.titleTextStyle,
-          ),
-          const SizedBox(height: 8.0),
-          const Text(
-            '회원정보를 입력해주세요',
-            style: TextStyles.subTitleTextStyle,
-          ),
-          const SizedBox(height: 20.0),
-          const Expanded(
+      child: CustomScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        slivers: [
+          SliverFillRemaining(
+            hasScrollBody: false,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                ColumnFormFieldWidget(
-                  label: '이메일',
-                  hintText: 'example@email.com',
+                const Text(
+                  '더 좋은 아침을 만날 준비 됐나요?',
+                  style: TextStyles.titleTextStyle,
                 ),
-                SizedBox(height: 24.0),
-                ColumnFormFieldWidget(
-                  label: '비밀번호',
-                  hintText: '숫자 포함 영문 10글자 이상',
-                  obscureText: true,
+                const SizedBox(height: 8.0),
+                const Text(
+                  '회원정보를 입력해주세요',
+                  style: TextStyles.subTitleTextStyle,
                 ),
-                SizedBox(height: 24.0),
-                ColumnFormFieldWidget(
-                  label: '비밀번호 확인',
-                  hintText: '비밀번호를 한 번 더 입력해주세요',
-                  obscureText: true,
+                const SizedBox(height: 20.0),
+                const Expanded(
+                  child: const Column(
+                    children: [
+                      ColumnFormFieldWidget(
+                        label: '이메일',
+                        hintText: 'example@email.com',
+                      ),
+                      SizedBox(height: 24.0),
+                      ColumnFormFieldWidget(
+                        label: '비밀번호',
+                        hintText: '숫자 포함 영문 10글자 이상',
+                        obscureText: true,
+                      ),
+                      SizedBox(height: 24.0),
+                      ColumnFormFieldWidget(
+                        label: '비밀번호 확인',
+                        hintText: '비밀번호를 한 번 더 입력해주세요',
+                        obscureText: true,
+                      ),
+                    ],
+                  ),
+                ),
+                CustomElevatedButton(
+                  text: '완료',
+                  onPressed: () => Get.back(),
                 ),
               ],
             ),
-          ),
-          CustomElevatedButton(
-            text: '완료',
-            onPressed: () => Get.back(),
           ),
         ],
       ),
